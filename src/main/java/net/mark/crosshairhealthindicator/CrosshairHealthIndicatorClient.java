@@ -9,7 +9,7 @@ import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.GameType;
 
 public class CrosshairHealthIndicatorClient implements ClientModInitializer {
@@ -23,7 +23,7 @@ public class CrosshairHealthIndicatorClient implements ClientModInitializer {
 
         HudElementRegistry.attachElementAfter(
                 VanillaHudElements.CROSSHAIR,
-                ResourceLocation.fromNamespaceAndPath(MOD_ID, "crosshair"),
+                Identifier.fromNamespaceAndPath(MOD_ID, "crosshair"),
                 CrosshairHealthIndicatorClient::renderIndicator
         );
     }
