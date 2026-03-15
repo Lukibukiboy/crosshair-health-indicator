@@ -8,9 +8,9 @@
         "Mark Snicket"
     ],
     "contact": {
-        "homepage": "https://modrinth.com/mod/crosshair-health-indicator",
-        "sources": "https://github.com/Mark-Snicket/crosshair-health-indicator/",
-        "issues": "https://github.com/Mark-Snicket/crosshair-health-indicator/issues/"
+        "homepage": "https://modrinth.com/mod/render-distance-cycler",
+        "sources": "https://github.com/Mark-Snicket/renderdistancecycler/",
+        "issues": "https://github.com/Mark-Snicket/renderdistancecycler/issues/"
     },
     "license": "MIT",
     "icon": "assets/crosshair-health-indicator/icon.png",
@@ -26,7 +26,11 @@
     "depends": {
         "fabricloader": ">=0.18.4",
         "minecraft": [
-            "1.21.11"
+            "1.21.6",
+            "1.21.7",
+            "1.21.8",
+            "1.21.9",
+            "1.21.10"
         ],
         "java": ">=21",
         "fabric-api": "*"
@@ -35,7 +39,7 @@
         "modmenu": {
             "update_checker": true,
             "links": {
-                "modmenu.modrinth": "https://modrinth.com/mod/crosshair-health-indicator",
+                "modmenu.modrinth": "https://modrinth.com/mod/render-distance-cycler",
                 "modmenu.discord": "https://discord.gg/hHMrX2GjzM"
             }
         }
