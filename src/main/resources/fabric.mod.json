@@ -1,9 +1,9 @@
 {
     "schemaVersion": 1,
     "id": "crosshair-health-indicator",
-    "version": "${version}",
+    "version": "$version",
     "name": "Crosshair Health Indicator",
-    "description": "",
+    "description": "Displays your health as a number underneath your crosshair",
     "authors": [
         "Mark Snicket"
     ],
@@ -29,7 +29,8 @@
             "26.1-pre.2"
         ],
         "java": ">=21",
-        "fabric-api": "*"
+        "fabric-api": "*",
+        "cloth-config": "*"
     },
     "custom": {
         "modmenu": {
