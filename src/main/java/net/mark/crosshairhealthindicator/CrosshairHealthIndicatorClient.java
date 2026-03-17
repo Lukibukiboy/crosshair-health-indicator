@@ -1,7 +1,7 @@
 package net.mark.crosshairhealthindicator;
 
 import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
@@ -18,7 +18,7 @@ public class CrosshairHealthIndicatorClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        AutoConfig.register(ModConfig.class, Toml4jConfigSerializer::new);
+        AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
         config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
 
         HudElementRegistry.attachElementAfter(
