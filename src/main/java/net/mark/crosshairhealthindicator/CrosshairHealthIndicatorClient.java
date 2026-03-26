@@ -7,9 +7,9 @@ import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.GameType;
 
 public class CrosshairHealthIndicatorClient implements ClientModInitializer {
@@ -23,26 +23,26 @@ public class CrosshairHealthIndicatorClient implements ClientModInitializer {
 
         HudElementRegistry.attachElementAfter(
                 VanillaHudElements.CROSSHAIR,
-                ResourceLocation.fromNamespaceAndPath(MOD_ID, "crosshair"),
+                Identifier.fromNamespaceAndPath(MOD_ID, "crosshair"),
                 CrosshairHealthIndicatorClient::renderIndicator
         );
     }
 
 
-    private static void renderIndicator(GuiGraphics graphics, DeltaTracker tracker) {
+    private static void renderIndicator(GuiGraphicsExtractor graphicsExtractor, DeltaTracker tracker) {
 
         Minecraft minecraft = Minecraft.getInstance();
         assert minecraft.player != null;
 
         if (!shouldRender(minecraft)) return;
 
-        int x = (graphics.guiWidth() - 15) / 2 + 8;
-        int y = (graphics.guiHeight() - 15) / 2 + 13;
+        int x = (graphicsExtractor.guiWidth() - 15) / 2 + 2;
+        int y = (graphicsExtractor.guiHeight() - 15) / 2 + 13;
         int color = 0xFF000000 | config.textColor;
 
         String text = config.displayHealthInHearts ? getPlayerHeartsAsFormattedString(minecraft.player) : getPlayerHealthAsFormattedString(minecraft.player);
 
-        graphics.drawCenteredString(
+        graphicsExtractor.text(
                 Minecraft.getInstance().font,
                 text,
                 x, y,
