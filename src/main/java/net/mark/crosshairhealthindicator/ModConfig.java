@@ -12,9 +12,21 @@ public class ModConfig implements ConfigData {
 
     public boolean alwaysShow = false;
 
-
     @ConfigEntry.Gui.Excluded
     public static final int TEXT_COLOR_DEFAULT = 0xFFFFFF;
     @ConfigEntry.ColorPicker
-    public int textColor = TEXT_COLOR_DEFAULT;
+
+    public int textColor = TEXT_COLOR_DEFAULT;    @ConfigEntry.Gui.CollapsibleObject(startExpanded = true)
+    WarningColor warningColor = new WarningColor();
+    public static class WarningColor implements ConfigData {
+
+        public boolean enableWarningColor = false;
+
+        @ConfigEntry.Gui.Excluded
+        public static final int WARNING_COLOR_DEFAULT = 0xFF0000;
+        @ConfigEntry.ColorPicker
+        public int warningColor = WARNING_COLOR_DEFAULT;
+
+        public int changeColorBelowHealth = 6;
+    }
 }
