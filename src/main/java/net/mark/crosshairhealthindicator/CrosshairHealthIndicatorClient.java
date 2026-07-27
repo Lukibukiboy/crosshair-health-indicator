@@ -30,20 +30,18 @@ public class CrosshairHealthIndicatorClient implements ClientModInitializer {
 
 
     private static void renderIndicator(GuiGraphicsExtractor graphicsExtractor, DeltaTracker tracker) {
-
         Minecraft minecraft = Minecraft.getInstance();
-        assert minecraft.player != null;
 
         if (!shouldRender(minecraft)) return;
 
         int x = (graphicsExtractor.guiWidth() - 15) / 2 + 2;
         int y = (graphicsExtractor.guiHeight() - 15) / 2 + 13;
-        int color = 0xFF000000 | config.textColor;
+        int color = getColor(minecraft);
 
         String text = config.displayHealthInHearts ? getPlayerHeartsAsFormattedString(minecraft.player) : getPlayerHealthAsFormattedString(minecraft.player);
 
         graphicsExtractor.text(
-                Minecraft.getInstance().font,
+                minecraft.font,
                 text,
                 x, y,
                 color
@@ -55,8 +53,21 @@ public class CrosshairHealthIndicatorClient implements ClientModInitializer {
         if (minecraft.player == null) return false;
         if (!minecraft.options.getCameraType().isFirstPerson()) return false;
         if (config.alwaysShow) return true;
-            else return minecraft.player.gameMode() == GameType.SURVIVAL || minecraft.player.gameMode() == GameType.ADVENTURE;
+        return minecraft.player.gameMode() == GameType.SURVIVAL || minecraft.player.gameMode() == GameType.ADVENTURE;
     }
+
+    private static int getColor(Minecraft minecraft) {
+        if (config.warningColor.enableWarningColor) {
+            assert minecraft.player != null;
+            float health = Math.round(minecraft.player.getHealth() * 10) / 10.0f; // round as in getPlayerHealthAsFormattedString()
+
+            if (health <= config.warningColor.changeColorBelowHealth) {
+                return 0xFF000000 | config.warningColor.warningColor;
+            }
+        }
+        return 0xFF000000 | config.textColor;
+    }
+
 
     public static String getPlayerHealthAsFormattedString(LocalPlayer player) {
         float health = player.getHealth();
