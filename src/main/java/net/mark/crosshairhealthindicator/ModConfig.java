@@ -15,8 +15,15 @@ public class ModConfig implements ConfigData {
     @ConfigEntry.Gui.Excluded
     public static final int TEXT_COLOR_DEFAULT = 0xFFFFFF;
     @ConfigEntry.ColorPicker
+    public int textColor = TEXT_COLOR_DEFAULT;
 
-    public int textColor = TEXT_COLOR_DEFAULT;    @ConfigEntry.Gui.CollapsibleObject(startExpanded = true)
+    @ConfigEntry.BoundedDiscrete(min = 0, max = 2)
+    public int decimalPlaces = 1;
+
+    public int xOffset = 0;
+    public int yOffset = 0;
+
+    @ConfigEntry.Gui.CollapsibleObject(startExpanded = true)
     WarningColor warningColor = new WarningColor();
     public static class WarningColor implements ConfigData {
 
